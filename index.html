@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KingPlugShop — Productos Apple</title>
+  <style>
+    :root{--beige:#F8F1E4;--blue:#03399e;--muted:#666;}
+    body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--beige);color:#111;background-image:linear-gradient( rgba(0,0,0,0.01), rgba(0,0,0,0.01) ); background-repeat:repeat;}
+    header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(255,255,255,0.7);backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,0,0,0.06)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:56px;border-radius:8px}
+    nav a{margin-left:14px;text-decoration:none;color:var(--blue);font-weight:600}
+    .hero{padding:48px 20px;text-align:center;background:transparent}
+    .hero .box{background:white;padding:24px;border-radius:12px;display:inline-block;max-width:900px;box-shadow:0 6px 18px rgba(0,0,0,0.05)}
+    .hero h1{margin:0;font-size:28px;color:var(--blue)}
+    main{max-width:1100px;margin:22px auto;padding:0 16px}
+    .products{display:flex;flex-direction:column;gap:18px}
+    .product{display:flex;gap:18px;background:white;border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.04);padding:12px;align-items:center}
+    .product img{width:220px;height:220px;object-fit:cover;border-radius:10px}
+    .pinfo{flex:1;display:flex;flex-direction:column;gap:8px}
+    .pinfo h3{margin:0;color:var(--blue)}
+    .pinfo p{margin:0;color:var(--muted)}
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{background:var(--blue);color:white;padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn.ghost{background:white;color:var(--blue);border:1px solid var(--blue)}
+    .compare-bar{position:fixed;left:18px;bottom:18px;background:white;padding:10px 12px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.12);display:flex;gap:8px;align-items:center}
+    footer{text-align:center;padding:18px;color:#555;margin-top:24px}
+    table.compare{width:100%;border-collapse:collapse}
+    table.compare th, table.compare td{border:1px solid #eee;padding:8px;text-align:left}
+    @media(max-width:720px){ .product{flex-direction:column;align-items:stretch} .product img{width:100%;height:320px} header nav{display:none} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="logo.png" alt="KingPlugShop">
+      <div>
+        <div style="font-weight:800;color:var(--blue)">KingPlugShop</div>
+        <div style="font-size:13px;color:var(--muted)">Catálogo Apple — Calidad y confianza</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+      <a href="https://www.instagram.com/jessefp12320?igsh=MTQ0ZmdndG1kN240bg==" target="_blank">Instagram</a>
+    </nav>
+  </header>
+
+  <section id="inicio" class="hero">
+    <div class="box">
+      <h1>Bienvenido a KingPlugShop — Tu proveedor de confianza en productos Apple</h1>
+      <p style="color:var(--muted)">Selecciona y compara productos. Cuando compres, podrás enviar tu comprobante por WhatsApp al +52 871 572 8494.</p>
+    </div>
+  </section>
+
+  <main>
+    <section id="productos">
+      <h2 style="color:var(--blue)">Productos</h2>
+      <div class="products" id="productsList">
+        <!-- Products injected by JS -->
+      </div>
+    </section>
+
+    <section id="contacto" style="margin-top:30px">
+      <h2 style="color:var(--blue)">Contacto</h2>
+      <p>WhatsApp: <a href="https://wa.me/5218715728494">+52 871 572 8494</a></p>
+      <p>Instagram: <a href="https://www.instagram.com/jessefp12320?igsh=MTQ0ZmdndG1kN240bg==">jessefp12320</a></p>
+      <p style="color:#555;margin-top:8px">Políticas: Envío por Estafeta u otras paqueterías. El tiempo de entrega puede variar y en ocasiones ser mayor al estimado. Los productos se entregan sin garantía; revisa el paquete al recibirlo.</p>
+    </section>
+  </main>
+
+  <div class="compare-bar" id="compareBar" style="display:none">
+    <button class="btn" id="openCompare">Comparar (0)</button>
+    <button class="btn ghost" id="clearCompare">Limpiar</button>
+  </div>
+
+  <footer>
+    © 2025 KingPlugShop — Hecho con ❤️
+  </footer>
+
+<script>
+const WHATSAPP_NUMBER = '5218715728494'; // +52 871 572 8494
+const products = [
+  { id:1, sku:'KPS-AP1', name:'AirPods Pro (2ª Gen)', price:1999, img:'airpods_pro.png', desc:'AirPods Pro originales, cancelación de ruido, estuche de carga.'},
+  { id:2, sku:'KPS-AP2', name:'AirPods (3ª Gen)', price:1599, img:'airpods_3.png', desc:'AirPods 3 generación, sonido espacial.'},
+  { id:3, sku:'KPS-AP3', name:'AirPods (2ª Gen)', price:999, img:'airpods_2.png', desc:'AirPods 2 generación, cargan por Lightning.'},
+  { id:4, sku:'KPS-AMAX', name:'AirPods Max', price:4499, img:'airpods_max.png', desc:'AirPods Max, audio de alta fidelidad.'},
+  { id:5, sku:'KPS-CL', name:'Cable Lightning', price:299, img:'cable_lightning.png', desc:'Cable Lightning oficial.'},
+  { id:6, sku:'KPS-BT', name:'Bocina Bluetooth', price:699, img:'bluetooth_speaker.png', desc:'Bocina bluetooth portable.'},
+];
+
+const productsList = document.getElementById('productsList');
+let compare = JSON.parse(localStorage.getItem('kps_compare')||'[]');
+
+function renderProducts(){
+  products.forEach(p => {
+    const el = document.createElement('article');
+    el.className = 'product';
+    el.innerHTML = `
+      <img src="${p.img}" alt="${p.name}" />
+      <div class="pinfo">
+        <div>
+          <h3>${p.name}</h3>
+          <p class="desc">${p.desc}</p>
+          <p class="price">$${p.price} MXN</p>
+        </div>
+        <div class="actions">
+          <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" data-id="${p.id}" class="compare-checkbox"> Comparar</label>
+          <button class="btn" onclick="buyNow(${p.id})">Comprar ahora</button>
+          <button class="btn ghost" onclick="addToCart(${p.id})">Agregar al carrito</button>
+        </div>
+      </div>
+    `;
+    productsList.appendChild(el);
+  });
+  attachCompareListeners();
+  updateCompareBar();
+}
+
+function buyNow(id){
+  const p = products.find(x=>x.id===id);
+  const text = encodeURIComponent(`Hola, quiero comprar:\n1) ${p.name} - $${p.price} MXN\nSKU: ${p.sku}\nPor favor indícame el método de pago. Luego enviaré comprobante a este número.`);
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`,'_blank');
+}
+
+let cart = JSON.parse(localStorage.getItem('kps_cart')||'[]');
+function addToCart(id){
+  const p = products.find(x=>x.id===id);
+  cart.push(p);
+  localStorage.setItem('kps_cart', JSON.stringify(cart));
+  alert(p.name + ' agregado al carrito');
+}
+
+function attachCompareListeners(){
+  document.querySelectorAll('.compare-checkbox').forEach(ch => {
+    ch.addEventListener('change', (e)=>{
+      const id = Number(e.target.dataset.id);
+      if(e.target.checked){ compare.push(id); }
+      else { compare = compare.filter(x=>x!==id); }
+      localStorage.setItem('kps_compare', JSON.stringify(compare));
+      updateCompareBar();
+    });
+  });
+}
+
+function updateCompareBar(){
+  const bar = document.getElementById('compareBar');
+  const btn = document.getElementById('openCompare');
+  if(compare.length>0){ bar.style.display='flex'; btn.textContent = `Comparar (${compare.length})`; }
+  else { bar.style.display='none'; }
+}
+
+document.getElementById('openCompare').addEventListener('click', ()=>{
+  const selected = products.filter(p => compare.includes(p.id));
+  if(selected.length<2){ alert('Selecciona al menos 2 productos para comparar'); return; }
+  let html = '<h3>Comparación</h3><table class="compare"><tr><th>Característica</th>';
+  selected.forEach(s=> html += `<th>${s.name}</th>`);
+  html += '</tr>';
+  html += '<tr><td>Precio</td>';
+  selected.forEach(s=> html += `<td>$${s.price} MXN</td>`);
+  html += '</tr>';
+  html += '<tr><td>SKU</td>'; selected.forEach(s=> html += `<td>${s.sku}</td>`); html += '</tr>';
+  html += '<tr><td>Descripción</td>'; selected.forEach(s=> html += `<td>${s.desc}</td>`); html += '</tr>';
+  html += '</table>';
+  let text = 'Hola, quiero comparar estos productos:%0A';
+  selected.forEach((it,i) => { text += `${i+1}. ${it.name} - $${it.price} MXN%0A`; });
+  const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+  if(confirm('Ver tabla de comparación en ventana? (Aceptar = ver, Cancelar = enviar pedido por WhatsApp)')){
+    const w = window.open(); w.document.write(html);
+  } else {
+    window.open(wa,'_blank');
+  }
+});
+
+document.getElementById('clearCompare').addEventListener('click', ()=>{
+  compare=[]; localStorage.setItem('kps_compare', JSON.stringify(compare));
+  document.querySelectorAll('.compare-checkbox').forEach(ch=>ch.checked=false);
+  updateCompareBar();
+});
+
+renderProducts();
+</script>
+</body>
+</html>
