@@ -1,1 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel KingPlugShop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background:#f5f1e6; font-family:Arial; color:#222;">
+  <h1>Panel de Administración - KingPlugShop 👑</h1>
 
+  <div id="login">
+    <p>Introduce la contraseña:</p>
+    <input type="password" id="clave">
+    <button onclick="entrar()">Entrar</button>
+  </div>
+
+  <div id="panel" style="display:none;">
+    <form id="formProducto">
+      <input type="text" id="nombre" placeholder="Nombre del producto" required><br>
+      <input type="number" id="precio" placeholder="Precio" required><br>
+      <textarea id="descripcion" placeholder="Descripción"></textarea><br>
+      <input type="file" id="imagen" accept="image/*"><br>
+      <button type="submit">Agregar producto</button>
+    </form>
+    <p id="estado"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
