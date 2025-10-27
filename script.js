@@ -44,3 +44,14 @@ if (form) {
     reader.readAsDataURL(imagen);
   });
 }
+let cart = [];
+
+function addToCart(name, price) {
+  cart.push({ name, price });
+  alert(`${name} agregado al carrito 🛒`);
+}
+
+function buyNow(name, price) {
+  alert(`Gracias por tu compra de ${name} por $${price} MXN ✅`);
+  // Aquí más adelante se puede conectar con WhatsApp o un sistema de pago real.
+}
