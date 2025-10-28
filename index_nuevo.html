@@ -1,1 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KingPlugShop | Nuestros Productos</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: #111;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 40px 0 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      padding: 0 20px 60px;
+    }
+    .product {
+      border: 1px solid #eee;
+      border-radius: 20px;
+      padding: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .product img {
+      width: 100%;
+      border-radius: 15px;
+    }
+    .product h2 {
+      font-size: 1.1rem;
+      margin: 10px 0 5px;
+    }
+    .product p {
+      font-size: 1rem;
+      color: #444;
+      margin: 0 0 10px;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 25px;
+      background-color: #004aad;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .button:hover {
+      background-color: #002f6c;
+    }
+  </style>
+</head>
+<body>
 
+  <h1>¡Nuestros Productos!</h1>
+
+  <div class="grid" id="productos">
+    <!-- Aquí se insertarán los productos -->
+  </div>
+
+  <script>
+    const productos = [
+      { nombre: "AirPods 2", precio: 150, imagen: "Imagen/Airpods_2.png" },
+      { nombre: "AirPods 2 Pro (sin cancelación)", precio: 185, imagen: "Imagen/Airpods_3.png" },
+      { nombre: "AirPods Pro - GEN (con cancelación)", precio: 199, imagen: "Imagen/airpods_pro.png" },
+      { nombre: "AirPods Max", precio: 450, imagen: "Imagen/airpods_max.png" },
+      { nombre: "Cable original", precio: 50, imagen: "Imagen/A_digital_photograph_features_a_USB-C_to_Lightning.png" },
+      { nombre: "Batería MagSafe", precio: 500, imagen: "Imagen/A_digital_photograph_features_a_MagSafe_Battery_Pa.png" }
+    ];
+
+    const contenedor = document.getElementById('productos');
+    productos.forEach(p => {
+      contenedor.innerHTML += `
+        <div class="product">
+          <img src="${p.imagen}" alt="${p.nombre}">
+          <h2>${p.nombre}</h2>
+          <p>$${p.precio.toFixed(2)}</p>
+          <button class="button" onclick="comprar('${p.nombre}', ${p.precio})">Comprar ahora</button>
+        </div>
+      `;
+    });
+
+    function comprar(nombre, precio) {
+      const phone = "5218715728494"; // cambia por tu número de WhatsApp
+      const mensaje = encodeURIComponent(`Hola, quiero comprar ${nombre} por $${precio} MXN`);
+      const url = `https://wa.me/${phone}?text=${mensaje}`;
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
